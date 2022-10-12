@@ -1,0 +1,1508 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RainScript</name>
+    </assembly>
+    <members>
+        <member name="T:RainScript.DebugTable">
+            <summary>
+            调试表
+            </summary>
+        </member>
+        <member name="F:RainScript.DebugTable.name">
+            <summary>
+            程序集名
+            </summary>
+        </member>
+        <member name="T:RainScript.DebugAdapter.Debugger">
+            <summary>
+            调试器
+            </summary>
+        </member>
+        <member name="F:RainScript.DebugAdapter.Debugger.name">
+            <summary>
+            调试名称
+            </summary>
+        </member>
+        <member name="M:RainScript.DebugAdapter.Debugger.#ctor(System.String,RainScript.VirtualMachine.Kernel,System.Func{System.String,RainScript.DebugTable},System.Func{System.String,RainScript.SymbolTable})">
+            <summary>
+            调试器
+            </summary>
+            <param name="name">名称</param>
+            <param name="kernel">核心</param>
+            <param name="debugTableLoader">调试表加载器</param>
+            <param name="symbolTableLoader">符号表加载器</param>
+        </member>
+        <member name="M:RainScript.DebugAdapter.Debugger.Dispose">
+            <summary>
+            释放调试器
+            </summary>
+        </member>
+        <member name="M:RainScript.DebugAdapter.Debugger.Finalize">
+            <summary>
+            析构
+            </summary>
+        </member>
+        <member name="T:RainScript.Real.Fixed">
+            <summary>
+            实数
+            </summary>
+        </member>
+        <member name="F:RainScript.Real.Fixed.MaxValue">
+            <summary>
+            实数能表示的最大值
+            </summary>
+        </member>
+        <member name="F:RainScript.Real.Fixed.MinValue">
+            <summary>
+            实数能表示的最小值
+            </summary>
+        </member>
+        <member name="F:RainScript.Real.Fixed.Epsilon">
+            <summary>
+            实数能表示的最小正数
+            </summary>
+        </member>
+        <member name="M:RainScript.Real.Fixed.CompareTo(RainScript.Real.Fixed)">
+            <summary>
+            比较两个实数
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.Equals(RainScript.Real.Fixed)">
+            <summary>
+            判断两个实数是否相等
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.Equals(System.Object)">
+            <summary>
+            判断实数是否与目标对象相等
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.GetHashCode">
+            <summary>
+            获取实数的哈希值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.ToString">
+            <summary>
+            实数转字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.ToString(System.String)">
+            <summary>
+            使用指定的格式，将此实例的数值转换为它的等效字符串表示形式。
+            </summary>
+            <param name="format">一个数值格式字符串。</param>
+            <returns>此实例的值的字符串表示形式，由 format 指定。</returns>
+            <exception cref="T:System.FormatException"> format 无效。</exception>
+        </member>
+        <member name="M:RainScript.Real.Fixed.ToString(System.IFormatProvider)">
+            <summary>
+            使用指定的区域性特定格式信息，将此实例的数值转换为它的等效字符串表示形式。
+            </summary>
+            <param name="provider">一个提供区域性特定的格式设置信息的对象。</param>
+            <returns>此实例的值的字符串表示形式，由 provider 指定。</returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            使用指定的格式和区域性特定格式信息，将此实例的数值转换为它的等效字符串表示形式。
+            </summary>
+            <param name="format">一个数值格式字符串。</param>
+            <param name="provider">一个提供区域性特定的格式设置信息的对象。</param>
+            <returns>此实例的值的字符串表示形式，由 format 和 provider 指定。</returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.ToBytes">
+            <summary>
+            转换为字节数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.Parse(System.Byte[],System.Int32)">
+            <summary>
+            将字节数组解析为一个实数
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.Parse(System.String)">
+            <summary>
+            解析一个实数字符串
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.TryParse(System.String,RainScript.Real.Fixed@)">
+            <summary>
+            尝试解析一个实数字符串
+            </summary>
+            <param name="s"></param>
+            <param name="real"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_OnesComplement(RainScript.Real.Fixed)">
+            <summary>
+            实数的各个二进制位取反
+            </summary>
+            <param name="real"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_UnaryPlus(RainScript.Real.Fixed)">
+            <summary>
+            返回原实数
+            </summary>
+            <param name="real"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_UnaryNegation(RainScript.Real.Fixed)">
+            <summary>
+            返回实数的相反数
+            </summary>
+            <param name="real"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Increment(RainScript.Real.Fixed)">
+            <summary>
+            实数自增1
+            </summary>
+            <param name="real"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Decrement(RainScript.Real.Fixed)">
+            <summary>
+            实数自减1
+            </summary>
+            <param name="real"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Addition(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数之和
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Subtraction(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数之差
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Multiply(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数之积
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Division(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数之商
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Modulus(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数的余数
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_BitwiseOr(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数对应位或运算后的实数
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_BitwiseAnd(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数对应位做与运算后的实数
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_ExclusiveOr(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            返回两实数对应位做异或运算后的实数
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_RightShift(RainScript.Real.Fixed,System.Int32)">
+            <summary>
+            右移
+            </summary>
+            <param name="real"></param>
+            <param name="amount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_LeftShift(RainScript.Real.Fixed,System.Int32)">
+            <summary>
+            左移
+            </summary>
+            <param name="real"></param>
+            <param name="amount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Equality(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            判断两实数是否相等
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Inequality(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            判断两实数是否不等
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_GreaterThan(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            判断左边是否大于右边
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_LessThan(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            判断左边是否小于右边
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_GreaterThanOrEqual(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            判断左边是否大于等于右边
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_LessThanOrEqual(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            判断左边是否小于等于右边
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.Multiply(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            乘法操作（速度较慢但不容易溢出）
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Explicit(RainScript.Real.Fixed)~System.Int64">
+            <summary>
+            实数转长整型
+            </summary>
+            <param name="real"></param>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Implicit(System.Int64)~RainScript.Real.Fixed">
+            <summary>
+            长整型转实数
+            </summary>
+            <param name="l"></param>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Implicit(RainScript.Real.Fixed)~System.Single">
+            <summary>
+            实数转单精度浮点数
+            </summary>
+            <param name="real"></param>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Implicit(RainScript.Real.Fixed)~System.Double">
+            <summary>
+            实数转双精度浮点数
+            </summary>
+            <param name="real"></param>
+        </member>
+        <member name="M:RainScript.Real.Fixed.op_Explicit(System.Double)~RainScript.Real.Fixed">
+            <summary>
+            双精度浮点数转实数
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="T:RainScript.VirtualMachine.IEntity">
+            <summary>
+            实体对象接口
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.IEntity.OnReference">
+            <summary>
+            当实体对象被添加到虚拟机时调用
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.IEntity.OnRelease">
+            <summary>
+            当实体对象在虚拟机中引用数量归零时调用
+            </summary>
+        </member>
+        <member name="T:RainScript.VirtualMachine.ExitCode">
+            <summary>
+            退出原因
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.None">
+            <summary>
+            没有错误
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.NullReference">
+            <summary>
+            空指针
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.OutOfRange">
+            <summary>
+            越界
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.DivideByZero">
+            <summary>
+            除零
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.InvalidCast">
+            <summary>
+            无效的类型转换
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.InvalidCoroutine">
+            <summary>
+            无效的携程
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.CoroutineNotCompleted">
+            <summary>
+            携程未完成
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.ExitCode.NativeException">
+            <summary>
+            内部函数调用异常
+            </summary>
+        </member>
+        <member name="T:RainScript.VirtualMachine.InvokerState">
+            <summary>
+            调用状态
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.InvokerState.Unstarted">
+            <summary>
+            未开始调用
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.InvokerState.Running">
+            <summary>
+            执行中
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.InvokerState.Completed">
+            <summary>
+            已完成
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.InvokerState.Aborted">
+            <summary>
+            已取消
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.InvokerState.Invalid">
+            <summary>
+            已失效
+            </summary>
+        </member>
+        <member name="T:RainScript.VirtualMachine.StackFrame">
+            <summary>
+            调用帧数据
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.StackFrame.library">
+            <summary>
+            程序集名
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.StackFrame.address">
+            <summary>
+            指令地址
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.StackFrame.ToString">
+            <summary>
+            帧数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RainScript.VirtualMachine.InvokerHandle">
+            <summary>
+            调用句柄
+            </summary>
+        </member>
+        <member name="P:RainScript.VirtualMachine.InvokerHandle.State">
+            <summary>
+            调用状态
+            </summary>
+        </member>
+        <member name="P:RainScript.VirtualMachine.InvokerHandle.Valid">
+            <summary>
+            是个有效句柄
+            </summary>
+        </member>
+        <member name="P:RainScript.VirtualMachine.InvokerHandle.ExitCode">
+            <summary>
+            退出代码
+            </summary>
+        </member>
+        <member name="P:RainScript.VirtualMachine.InvokerHandle.IsPause">
+            <summary>
+            暂停
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetStackFrames">
+            <summary>
+            获取调用帧数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.Start(System.Boolean,System.Boolean)">
+            <summary>
+            开始调用
+            </summary>
+            <param name="immediately">立刻开始调用，为false则会在<see cref="M:RainScript.VirtualMachine.Kernel.Update"/>中才第一次调用</param>
+            <param name="ignoreWait">忽略代码中的等待命令</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.Abort(System.Int64)">
+            <summary>
+            取消调用
+            </summary>
+            <param name="code">退出代码（必须非0才会生效）</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.Dispose">
+            <summary>
+            释放调用句柄
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetBoolReturnValue(System.Int32)">
+            <summary>
+            获取布尔返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetIntegerReturnValue(System.Int32)">
+            <summary>
+            获取整数返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetRealReturnValue(System.Int32)">
+            <summary>
+            获取实数返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetReal2ReturnValue(System.Int32)">
+            <summary>
+            获取实数2返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetReal3ReturnValue(System.Int32)">
+            <summary>
+            获取实数3返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetReal4ReturnValue(System.Int32)">
+            <summary>
+            获取实数4返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetStringReturnValue(System.Int32)">
+            <summary>
+            获取字符串返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.GetEntityReturnValue(System.Int32)">
+            <summary>
+            获取实体返回值
+            </summary>
+            <param name="index">返回值索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,System.Boolean)">
+            <summary>
+            设置布尔参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,System.Int64)">
+            <summary>
+            设置整数参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,RainScript.Real.Fixed)">
+            <summary>
+            设置实数参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,RainScript.Vector.Real2)">
+            <summary>
+            设置实数2参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,RainScript.Vector.Real3)">
+            <summary>
+            设置实数3参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,RainScript.Vector.Real4)">
+            <summary>
+            设置实数4参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,System.String)">
+            <summary>
+            设置字符串参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,RainScript.VirtualMachine.IEntity)">
+            <summary>
+            设置实体参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.op_Implicit(RainScript.VirtualMachine.InvokerHandle)~System.Boolean">
+            <summary>
+            判断句柄是否有效
+            </summary>
+            <param name="handle"></param>
+        </member>
+        <member name="T:RainScript.VirtualMachine.KernelState">
+            <summary>
+            虚拟机状态
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelState.stringCount">
+            <summary>
+            字符串数量
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelState.handleCount">
+            <summary>
+            句柄数量
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelState.coroutineCount">
+            <summary>
+            携程数量
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelState.entityCount">
+            <summary>
+            实体数量
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelState.heapTotalMemory">
+            <summary>
+            托管堆大小
+            </summary>
+        </member>
+        <member name="T:RainScript.VirtualMachine.CoroutineExit">
+            <summary>
+            携程退出
+            </summary>
+            <param name="stacks">栈</param>
+            <param name="code">退出码</param>
+        </member>
+        <member name="T:RainScript.VirtualMachine.HitBreakpoint">
+            <summary>
+            命中断点
+            </summary>
+        </member>
+        <member name="T:RainScript.VirtualMachine.Kernel">
+            <summary>
+            核心
+            </summary>
+        </member>
+        <member name="E:RainScript.VirtualMachine.Kernel.OnExit">
+            <summary>
+            携程非正常退出时触发
+            </summary>
+        </member>
+        <member name="E:RainScript.VirtualMachine.Kernel.OnHitBreakpoint">
+            <summary>
+            触发断点
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.#ctor(RainScript.Library,System.Func{System.String,RainScript.Library},System.Func{System.String,RainScript.IPerformer},System.Int32)">
+            <summary>
+            核心
+            </summary>
+            <param name="library">启动程序集</param>
+            <param name="libraryLoader">程序集加载器</param>
+            <param name="performerLoader">程序集交互对象加载器</param>
+            <param name="entityCapacity">实体容器初始大小</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.GetFunctionHandle(System.String,System.String)">
+            <summary>
+            获取函数句柄
+            </summary>
+            <param name="functionName"></param>
+            <param name="libraryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.GetFunctionHandles(System.String,System.String)">
+            <summary>
+            获取函数所有重载的句柄
+            </summary>
+            <param name="functionName"></param>
+            <param name="libraryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.Invoker(RainScript.VirtualMachine.FunctionHandle)">
+            <summary>
+            获取一个函数的调用
+            </summary>
+            <param name="handle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.Update">
+            <summary>
+            主逻辑更新
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.GetState">
+            <summary>
+            获取当前状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.GetInvokingStackFrames">
+            <summary>
+            获取当前正在执行的携程的栈帧
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.Collect">
+            <summary>
+            托管堆回收
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.Finalize">
+            <summary>
+            析构
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.Dispose">
+            <summary>
+            销毁
+            </summary>
+            <exception cref="T:System.ObjectDisposedException"></exception>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.op_Implicit(RainScript.VirtualMachine.Kernel)~System.Boolean">
+            <summary>
+            有效的
+            </summary>
+            <param name="kernel"></param>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelMemberMethodInvoker.methods">
+            <summary>
+            对应<see cref="F:RainScript.KernelMethod.memberMethods"/>
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelMethodInvoker.methods">
+            <summary>
+            对应<see cref="F:RainScript.KernelMethod.methods"/>
+            </summary>
+        </member>
+        <member name="T:RainScript.VirtualMachine.FunctionHandle">
+            <summary>
+            方法句柄
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.FunctionHandle.op_Implicit(RainScript.VirtualMachine.FunctionHandle)~System.Boolean">
+            <summary>
+            判断是否是个有效的方法句柄
+            </summary>
+            <param name="handle"></param>
+        </member>
+        <member name="T:RainScript.IPerformer">
+            <summary>
+            对宿主语言调用的接口
+            </summary>
+        </member>
+        <member name="T:RainScript.Space">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="F:RainScript.Space.name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:RainScript.Library">
+            <summary>
+            库
+            </summary>
+        </member>
+        <member name="T:RainScript.SymbolTable">
+            <summary>
+            符号表
+            </summary>
+        </member>
+        <member name="M:RainScript.SymbolTable.GetInfo(RainScript.VirtualMachine.StackFrame,System.String@,System.String@,System.UInt32@)">
+            <summary>
+            获取栈信息
+            </summary>
+            <param name="frame">栈数据</param>
+            <param name="file">文件</param>
+            <param name="function">函数</param>
+            <param name="line">行数</param>
+        </member>
+        <member name="T:RainScript.Vector.Real2">
+            <summary>
+            二维向量
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real2.x">
+            <summary>
+            坐标
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real2.y">
+            <summary>
+            坐标
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real2.#ctor(RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            二维向量
+            </summary>
+            <param name="x">x坐标</param>
+            <param name="y">y坐标</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.ToString">
+            <summary>
+            向量转字符串
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real2.Equals(System.Object)">
+            <summary>
+            比较向量坐标值是否相等
+            </summary>
+            <param name="obj">比较对象</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real2.normalized">
+            <summary>
+            向量方向上的单位向量
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real2.sqrMagnitude">
+            <summary>
+            向量长度的平方
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real2.magnitude">
+            <summary>
+            向量的长度
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real2.Lerp(RainScript.Vector.Real2,RainScript.Vector.Real2,RainScript.Real.Fixed)">
+            <summary>
+            向量的插值
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real2.Max(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            返回由两个向量中对应坐标值取Max后构成的向量
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.Min(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            返回由两个向量中对应坐标值取Min后构成的向量
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.Angle(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            获取两个向量的夹角
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.Cross(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            叉乘
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real2.Dot(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            点积
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Multiply(RainScript.Vector.Real2,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数的乘积
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Multiply(RainScript.Real.Fixed,RainScript.Vector.Real2)">
+            <summary>
+            实数与向量的乘积
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Multiply(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            缩放
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Division(RainScript.Vector.Real2,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数相除（向量中每个坐标分别与实数作除法）
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Division(RainScript.Real.Fixed,RainScript.Vector.Real2)">
+            <summary>
+            实数与向量相除（实数与向量中每个坐标分别作除法）
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Division(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            缩放
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Modulus(RainScript.Real.Fixed,RainScript.Vector.Real2)">
+            <summary>
+            求余
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Modulus(RainScript.Vector.Real2,RainScript.Real.Fixed)">
+            <summary>
+            求余
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Modulus(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            求余
+            </summary>
+            <param name="r">向量</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Addition(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            向量加法
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Subtraction(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            向量减法
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_UnaryNegation(RainScript.Vector.Real2)">
+            <summary>
+            相反向量
+            </summary>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Equality(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            比较两个向量坐标值是否相等
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Inequality(RainScript.Vector.Real2,RainScript.Vector.Real2)">
+            <summary>
+            比较两个向量坐标值是否不想等
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real2.op_Implicit(RainScript.Vector.Real2)~RainScript.Vector.Real3">
+            <summary>
+            二维向量转三维向量
+            </summary>
+            <param name="v">二维向量</param>
+        </member>
+        <member name="P:RainScript.Vector.Real2.zero">
+            <summary>
+            原点向量
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real2.one">
+            <summary>
+            单位向量
+            </summary>
+        </member>
+        <member name="T:RainScript.Vector.Real3">
+            <summary>
+            三维向量
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real3.x">
+            <summary>
+            向量坐标
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real3.y">
+            <summary>
+            向量坐标
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real3.z">
+            <summary>
+            向量坐标
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real3.#ctor(RainScript.Real.Fixed,RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            三维向量
+            </summary>
+            <param name="x">x轴坐标</param>
+            <param name="y">y轴坐标</param>
+            <param name="z">z轴坐标</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.ToString">
+            <summary>
+            向量转字符串
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real3.Equals(System.Object)">
+            <summary>
+            比较两个向量坐标值是否相等
+            </summary>
+            <param name="obj">比较对象</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.normalized">
+            <summary>
+            向量方向上的单位向量
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.sqrMagnitude">
+            <summary>
+            向量长度的平方
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.magnitude">
+            <summary>
+            向量的长度
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real3.Lerp(RainScript.Vector.Real3,RainScript.Vector.Real3,RainScript.Real.Fixed)">
+            <summary>
+            向量的插值
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real3.Max(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            返回由两个向量中对应坐标值取Max后构成的向量
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.Min(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            返回由两个向量中对应坐标值取Min后构成的向量
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.Angle(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            获取两个向量的夹角
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.Cross(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            获取两个向量的叉乘
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.Dot(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            向量的点乘
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Multiply(RainScript.Vector.Real3,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数相乘
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Multiply(RainScript.Real.Fixed,RainScript.Vector.Real3)">
+            <summary>
+            实数与向量相乘
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Multiply(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            缩放
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Division(RainScript.Vector.Real3,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数相除
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Division(RainScript.Real.Fixed,RainScript.Vector.Real3)">
+            <summary>
+            实数与向量相除
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Division(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            缩放
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Modulus(RainScript.Vector.Real3,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数求余
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Modulus(RainScript.Real.Fixed,RainScript.Vector.Real3)">
+            <summary>
+            实数与向量求余
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Modulus(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            求余
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Addition(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            向量加法
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Subtraction(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            向量减法
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_UnaryNegation(RainScript.Vector.Real3)">
+            <summary>
+            向量的反向量
+            </summary>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Equality(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            比较两个向量坐标值是否相等
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Inequality(RainScript.Vector.Real3,RainScript.Vector.Real3)">
+            <summary>
+            比较两个向量坐标值是否不想等
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real3.op_Explicit(RainScript.Vector.Real3)~RainScript.Vector.Real2">
+            <summary>
+            三维向量转二维向量
+            </summary>
+            <param name="v">三维向量</param>
+        </member>
+        <member name="P:RainScript.Vector.Real3.zero">
+            <summary>
+            原点向量(0, 0, 0)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.one">
+            <summary>
+            单位向量(1, 1, 1)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.right">
+            <summary>
+            方向向右的单位向量(1, 0, 0)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.left">
+            <summary>
+            方向向左的单位向量(-1, 0, 0)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.up">
+            <summary>
+            方向上的单位向量(0, 1, 0)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.down">
+            <summary>
+            方向向下的单位向量(0, -1, 0)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.forward">
+            <summary>
+            方向向前的单位向量(0, 0, 1)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real3.back">
+            <summary>
+            方向向后的单位向量(0, 0, -1)
+            </summary>
+        </member>
+        <member name="T:RainScript.Vector.Real4">
+            <summary>
+            四维向量
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real4.x">
+            <summary>
+            向量坐标
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real4.y">
+            <summary>
+            向量坐标
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real4.z">
+            <summary>
+            向量坐标
+            </summary>
+        </member>
+        <member name="F:RainScript.Vector.Real4.w">
+            <summary>
+            向量坐标
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real4.#ctor(RainScript.Real.Fixed,RainScript.Real.Fixed,RainScript.Real.Fixed,RainScript.Real.Fixed)">
+            <summary>
+            四维向量
+            </summary>
+            <param name="x">x轴坐标</param>
+            <param name="y">y轴坐标</param>
+            <param name="z">z轴坐标</param>
+            <param name="w">w轴坐标</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.ToString">
+            <summary>
+            向量转字符串
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real4.Equals(System.Object)">
+            <summary>
+            比较两个向量坐标值是否相等
+            </summary>
+            <param name="obj">比较对象</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real4.normalized">
+            <summary>
+            向量方向上的单位向量
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real4.sqrMagnitude">
+            <summary>
+            向量长度的平方
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real4.magnitude">
+            <summary>
+            向量的长度
+            </summary>
+        </member>
+        <member name="M:RainScript.Vector.Real4.Lerp(RainScript.Vector.Real4,RainScript.Vector.Real4,RainScript.Real.Fixed)">
+            <summary>
+            插值
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="l"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real4.Max(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            返回由两个向量中对应坐标值取Max后构成的向量
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.Min(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            返回由两个向量中对应坐标值取Min后构成的向量
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.Angle(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            获取两个向量的夹角
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.Dot(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            向量的点乘
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Multiply(RainScript.Vector.Real4,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数相乘
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Multiply(RainScript.Real.Fixed,RainScript.Vector.Real4)">
+            <summary>
+            实数与向量相乘
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Multiply(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            缩放
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Division(RainScript.Vector.Real4,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数相除
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Division(RainScript.Real.Fixed,RainScript.Vector.Real4)">
+            <summary>
+            实数与向量相除
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Division(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            缩放
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Modulus(RainScript.Vector.Real4,RainScript.Real.Fixed)">
+            <summary>
+            向量与实数求余
+            </summary>
+            <param name="v">向量</param>
+            <param name="r">实数</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Modulus(RainScript.Real.Fixed,RainScript.Vector.Real4)">
+            <summary>
+            实数与向量求余
+            </summary>
+            <param name="r">实数</param>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Modulus(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            求余
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Addition(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            向量加法
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Subtraction(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            向量减法
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_UnaryNegation(RainScript.Vector.Real4)">
+            <summary>
+            向量的反向量
+            </summary>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Equality(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            比较两个向量坐标值是否相等
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Inequality(RainScript.Vector.Real4,RainScript.Vector.Real4)">
+            <summary>
+            比较两个向量坐标值是否不想等
+            </summary>
+            <param name="v1">向量</param>
+            <param name="v2">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Explicit(RainScript.Vector.Real4)~RainScript.Vector.Real2">
+            <summary>
+            转低维向量
+            </summary>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Explicit(RainScript.Vector.Real4)~RainScript.Vector.Real3">
+            <summary>
+            转低维向量
+            </summary>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Explicit(RainScript.Vector.Real2)~RainScript.Vector.Real4">
+            <summary>
+            转高维向量
+            </summary>
+            <param name="v">向量</param>
+        </member>
+        <member name="M:RainScript.Vector.Real4.op_Explicit(RainScript.Vector.Real3)~RainScript.Vector.Real4">
+            <summary>
+            转高维向量
+            </summary>
+            <param name="v">向量</param>
+        </member>
+        <member name="P:RainScript.Vector.Real4.zero">
+            <summary>
+            原点向量(0, 0, 0, 0)
+            </summary>
+        </member>
+        <member name="P:RainScript.Vector.Real4.one">
+            <summary>
+            单位向量(1, 1, 1, 1)
+            </summary>
+        </member>
+    </members>
+</doc>

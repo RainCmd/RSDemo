@@ -1,0 +1,49 @@
+native entity Item_Create(string model, string anim, bool face, real2 position)
+native Item_SetAnim(entity, string anim)
+native Item_SetFace(entity, bool)
+native Item_SetPos(entity, real2)
+native Item_Delete(entity, string deathAnim)
+
+class Item
+    entity item
+    real2 position
+    bool face
+    string anim
+    public Item(string model, string anim, real2 pos, bool face)
+        this.anim = anim
+        this.face = face
+        item = Item_Create(model, anim, face, pos)
+        position = pos
+
+    public bool GetFace()
+        return face
+
+    public SetFace(bool face)
+        if this.face == face || item == null
+            return
+        this.face = face
+        Item_SetFace(item, face)
+
+    public Play(string anim)
+        if this.anim == anim || item == null
+            return
+        this.anim = anim
+        Item_SetAnim(item, anim)
+
+    public SetPos(real2 pos)
+        if pos == position || item == null
+            return
+        position = pos
+        Item_SetPos(item, pos)
+
+    public real2 GetPos()
+        return position
+
+    public Kill(string anim)
+        if item == null
+            return
+        Item_Delete(item, anim)
+        item = null
+
+    public bool IsDeath()
+        return item==null

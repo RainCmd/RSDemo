@@ -1,0 +1,20 @@
+
+SpawnEnemy()
+    while
+        wait 10 + GetRandomInt(30)
+        Enemy(real2(GetRandomInt(128), 30), GetRandomInt(2) > 0)
+
+class Enemy Unit
+    public Enemy(real2 position, bool face) base("EnemyUnitData", "jump", "death", face, position, ENEMY_PID, 100)
+        speed.x = face ? - 3 : 3
+        speed.y = 10
+        start Anim()
+
+    Anim()
+        while !IsDeath()
+            if fly
+                Play("jump")
+            else
+                Play("run")
+            wait
+

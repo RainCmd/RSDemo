@@ -1,0 +1,66 @@
+Unit[] units = Unit[32]
+int unitCount = 0
+
+function bool UnitPredicate(Unit)
+bool CheckCollision(real2 pos, Unit unit)
+    var up = unit.GetPos()
+    if kernel.Abs(up.x - pos.x) < 1
+        if up.y <= pos.y && up.y + 2 >= pos.y
+            return true 
+    return false
+
+Unit FindUnit(UnitPredicate match)
+    for var i = 0, i < unitCount, i ++
+        if match(units[i])
+            return units[i]
+    return null
+
+class Unit Item
+    public int pid
+    public int hp
+    public real2 speed
+    public bool fly
+    public int hp
+    string deathAnim
+    int uid
+    public Unit(string model, string anim, string deathAnim, bool face, real2 pos, int pid, int hp) base(model, anim, pos, face)
+        this.deathAnim = deathAnim
+        this.pid = pid
+        this.hp = hp
+        if unitCount == units.GetLength()
+            var nus = Unit[unitCount << 1]
+            for var i = 0, i < unitCount, i ++
+                nus[i] = units[i]
+            units = nus
+        uid = unitCount ++
+        units[uid]= this
+        start MoveCheck()
+
+    public Kill()
+        hp = 0
+        Kill(deathAnim)
+        unitCount --
+        units[unitCount].uid = uid
+        units[uid] = units[unitCount]
+        units[unitCount] = null
+
+    public Hit(int dmg)
+        if hp > dmg
+            hp -= dmg
+        else
+            Kill()
+    MoveCheck()
+        while !IsDeath()
+            var pos = GetPos() + speed * DELTA_TIME
+            speed.y -= GRAVITY * DELTA_TIME
+            if speed.y < 0 && GetMapType(pos) == GROUND_TYPE
+                fly = false
+                speed.y = 0
+                pos.y = kernel.Round(pos.y)
+            else
+                fly = true
+            SetPos(pos)
+            if pos.y < 0
+                Kill()
+            wait
+

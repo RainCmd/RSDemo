@@ -1,0 +1,102 @@
+
+const real PLAYER_MOVE_SPEED = 8
+const real PLAYER_JUMP_SPEED = 20
+Player[] players
+
+CreatePlayer()
+    players = Player[playerCount]
+    for var i = 0, i < playerCount, players[i]= Player(i), i ++
+
+class Player
+    public IGun gun
+    public int pid
+    public Unit unit
+    PlayerOperator oper
+    public Player(int pid)
+        gun = Shotgun(pid)
+        this.pid = pid
+        CreateUnit()
+        oper = playerOperators[pid]
+        start PlayerLoop()
+        start FireLoop()
+
+    CreateUnit()
+        var pos = real2(GetRandomInt(128), 30)
+        unit = Unit("PlayerUnitData", "jump", "death", GetRandomInt(2) > 0, pos, pid, 100)
+        unit.speed.y = 20
+
+    real2, real2 GetShootRay()
+        var pos = unit.GetPos()
+        if !unit.fly
+            pos.y += 1.5
+    
+        var dir = real2(0, 0)
+        if oper.left
+            pos.x -=.5
+            dir.x =- 1
+        elif oper.right
+            pos.x +=.5
+            dir.x = 1
+            
+        if oper.up
+            pos.y +=.5
+            dir.y = 1
+        elif oper.down
+            if unit.fly || oper.left || oper.right
+                dir.y =- 1
+                pos.y -=.5
+            else
+                pos.y -= 1.25
+    
+        if dir.x == 0 && dir.y == 0
+            dir.x = unit.GetFace()?- 1 : 1
+            pos.x += dir.x *.5
+    
+        return pos, dir.Normalized()
+    
+    FireLoop()
+        while
+            if oper.fire && gun != null
+                gun.Shoot(GetShootRay())
+            else
+                wait
+            wait
+
+    PlayerLoop()
+        while
+            if unit != null && !unit.IsDeath()
+                if oper.left
+                    unit.speed.x = - PLAYER_MOVE_SPEED
+                    unit.SetFace(true)
+                elif oper.right
+                    unit.speed.x = PLAYER_MOVE_SPEED
+                    unit.SetFace(false)
+                else
+                    unit.speed.x = 0
+
+                if !unit.fly && oper.jump
+                    unit.speed.y = PLAYER_JUMP_SPEED
+
+                if unit.fly
+                    unit.Play("jump")
+                elif oper.left || oper.right
+                    if oper.up
+                        unit.Play("uprun")
+                    elif oper.down
+                        unit.Play("downrun")
+                    else
+                        unit.Play("run")
+                elif oper.up
+                    unit.Play("up")
+                elif oper.down
+                    unit.Play("down")
+                else
+                    unit.Play("normal")
+
+                if pid == localPID
+                    SetCameraPosition(unit.GetPos())
+            else
+                CreateUnit()
+            wait
+
+    

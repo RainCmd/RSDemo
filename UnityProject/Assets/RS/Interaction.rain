@@ -1,0 +1,44 @@
+int localPID
+int playerCount
+PlayerOperator[]playerOperators
+class PlayerOperator
+    public bool up = false
+    public bool down = false
+    public bool left = false
+    public bool right = false
+    public bool fire = false
+    public bool jump = false
+
+    public SetOper(bool up, bool down, bool left, bool right, bool fire, bool jump)
+        this.up = up
+        this.down = down
+        this.left = left
+        this.right = right
+        this.fire = fire
+        this.jump = jump
+        
+public InitGame(int lpid, int count, int seed)
+    localPID = lpid
+    playerCount = count
+    playerOperators = PlayerOperator[count]
+    for var i = 0, i < count, playerOperators[i ++] = PlayerOperator()
+    kernel.SetRandomSeed(seed)
+    start SpawnEnemy()
+    start SpawnGift()
+    start CreatePlayer()
+
+public OnPlayerOperator(int pid, bool up, bool down, bool left, bool right, bool fire, bool jump)
+    playerOperators[pid].SetOper(up, down, left, right, fire, jump)
+
+const int ENEMY_PID = 0x1000_0000
+const real GRAVITY = 20
+const real DELTA_TIME = .03
+const int GROUND_TYPE = 2
+native int GetMapType(real2 pos)
+native SetCameraPosition(real2 pos)
+native Log(string)
+int GetRandomInt(int max)
+    return kernel.Abs(kernel.GetRandomInt())% max
+
+Wait(real sec)
+    wait int&(sec / DELTA_TIME)

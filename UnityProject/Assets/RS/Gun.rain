@@ -1,0 +1,62 @@
+Bullet(real2 pos, real2 dir, int dmg, real time, int pid)
+    var bullet = Item("BulletData", "normal", pos, true)
+    while time > 0
+        time -= DELTA_TIME
+        var pos = bullet.GetPos() + dir * DELTA_TIME
+        bullet.SetPos(pos)
+        kernel.Collect()
+        Unit u = FindUnit(value => value.pid != pid && CheckCollision(pos, value))
+        kernel.Collect()
+        if u != null
+            u.Hit(dmg)
+            break
+        wait
+    bullet.Kill("normal_death")
+
+interface IGun
+    Shoot(real2 pos, real2 dir)
+
+class Shotgun IGun
+    public int pid
+    public int level = 2
+    public Shotgun(int pid)
+        this.pid = pid
+
+    Shoot(real2 pos, real2 dir, real angle)
+        var sin, var cos = kernel.SinCos(angle * kernel.Deg2Rad)
+        dir = real2(cos * dir.x - sin * dir.y, sin * dir.x + cos * dir.y).Normalized() * 10
+        start Bullet(pos, dir, 10, 2, pid)
+
+    public Shoot(real2 pos, real2 dir)
+        Shoot(pos, dir, 0)
+        for var i = 1, i <= level, i ++
+            Shoot(pos, dir, 10 * i)
+            Shoot(pos, dir, - 10 * i)
+        Wait(.15)
+
+class Burstgun IGun
+    public int pid
+    public Burstgun(int pid)
+        this.pid = pid
+
+    public Shoot(real2 pos, real2 dir)
+        start BurstBullet(pos, dir.Normalized() * 10)
+        Wait(.3)
+
+    BurstBullet(real2 pos, real2 dir)
+        var bullet = Item("BulletData", "normal", pos, true)
+        var time = 1.0
+        while time > 0
+            time -= DELTA_TIME
+            var pos = bullet.GetPos() + dir * DELTA_TIME
+            bullet.SetPos(pos)
+            var u = FindUnit(unit => unit.pid != pid && CheckCollision(pos, unit))
+            if u != null
+                u.Hit(10)
+                break
+            wait
+        else
+            var pos = bullet.GetPos()
+            for var i = 0, i < 12, i ++
+                start Bullet(pos, real2(kernel.SinCos(kernel.PI * i / 6)) * 3, 10, 1, pid)
+        bullet.Kill("normal_death")

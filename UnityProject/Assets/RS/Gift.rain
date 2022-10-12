@@ -1,0 +1,43 @@
+
+SpawnGift()
+    while
+        Gift((kernel.GetRandomInt() & 1) > 0 ? 'B' : 'S', real2(GetRandomInt(128), 1))
+        Wait(1 + kernel.GetRandomReal() * 2)
+        wait
+
+class Gift Item
+    int type
+    real speed = 30
+    public Gift(int type, real2 pos) base("BulletData", type == 'B' ? "B_Bullet" : "S_Bullet", pos, true)
+        this.type = type
+        start Check()
+
+    Check()
+        var time = 10.0
+        while !IsDeath() && time > 0
+            time -= DELTA_TIME
+            var u = FindUnit(value => value.pid != ENEMY_PID && CheckCollision(GetPos(), value))
+            if u != null
+                var p = players[u.pid]
+                p.gun = type == 'B' ? IGun & Burstgun(u.pid) : IGun & Shotgun(u.pid)
+                break
+
+            var pos = GetPos()
+            speed -= GRAVITY * DELTA_TIME
+            if speed < 0 && GetMapType(pos) == GROUND_TYPE
+                speed = 0
+                pos.y = kernel.Round(pos.y)
+            else
+                pos.y += speed * DELTA_TIME
+                if pos.y < 0
+                    break
+            SetPos(pos)
+            wait
+        Kill("BulletDeath")
+
+
+
+
+
+
+
