@@ -41,8 +41,8 @@
 | return | 函数返回 | is | 尝试类型转换，如果转换成功则返回true，否则返回false |
 | as | 尝试类型转换，如果转换成功则返回对象，否则返回null | start | 开启新的协程 |
 | wait | 等待 | exit | 终止协程，终止码必须非0 |
-| ~~try~~ | 保留关键字 | ~~catch~~ | 保留关键字 |
-| ~~finally~~ | 保留关键字 |   |   |
+| try | try语句 | catch | catch语句 |
+| finally | finally语句 |   |   |
 
 # 数据类型
 
@@ -99,15 +99,34 @@ coroutine Coro                      //声明一个协程 Coro
 ```
 
 ## 循环
-while和for循环后可以跟else和elif语句，当循环的条件表达式为false时会执行，break跳出的循环不会执行
-while省略条件表达式则默认一直循环
-for循环表达式用','号分隔，第二个表达式为循环条件，第三个及后续表达式在循环结束时，循环条件判断前执行，并且可以省略
+- while省略条件表达式则默认一直循环
+- for循环表达式用','号分隔，第二个表达式为循环条件，第三个及后续表达式在循环结束时，循环条件判断前执行，并且可以省略，如果第一个表达式要声明多个变量则可以用括号将其组成一个元组表达式
+- while和for循环后可以跟else和elif语句，当循环的条件表达式为false时会执行，break跳出的循环不会执行
+- break和continue后可以跟返回值类型为bool的表达式，只有当表达式返回值为true时才会执行操作，省略表达式则默认为常量true
+```rs
+var i = 0
+while i++ < 10
+    //循环操作
+while
+    break i++ > 10
+    //等价于:
+    //if i++ > 10
+    //   break
+for var i = 0, i < 10, i++
+    //循环操作
+else
+    //i>=10后会执行这里
+for (var x = 0, var y = 0), x < 10 && y < 10, x++, y += x
+    //循环操作
+```
 
 ## 元组
 表示返回值数量不为1的表达式，可以通过[]来取值，也可以组合成新的元组，
 元组的索引必须为常量，索引范围在0到元素数量之间，为负数的话会先加上元素数量后再计算
 元组可以当做一组参数直接传给函数。
 函数也可以返回多个返回值，这类函数调用后的表达式也是一个元组。
+元组的类型列表必须是明确的或可推导的。</br>
+**元组赋值可以用来交换全局变量或成员变量的值，但不能用来交换局部变量的值，因为虚拟机对局部变量的操作过程中不会创建临时变量**
 ``` js
 int, real, string Func()
     return 1, 2.3, "abc"
@@ -115,10 +134,19 @@ int, real, string Func()
 Func2(int, real, string)
 Func3(real, string, int, string)
 
+int glb_a = 10
+int glb_b = 20
 Entry()
     Func2(Func())                   //函数调用的表达式是个元组，可以直接作为其他函数参数
     Func3(Func()[1, 2, 0, 2])       //元组重组为新的元组并作为函数参数
     Func3(.1, Func()[-1, 0], "ABC") //重组的元组与参数一起作为函数参数，-1在编译时会加上元素数量3，最终被当作2来解析
+
+    var a, var b, var c = Func()    //因为各变量类型可以通过函数返回值列表推断，所以不会报错
+    int d, handle e = 1, null       //因为等号右边的null的类型无法推断，所以会编译报错
+
+    glb_a, glb_b = glb_b, glb_a     //可以正常交换值
+    var x, var y = 1, 2
+    x, y = y, x                     //x,y的结果都为2
 ```
 
 ## lambda表达式
@@ -201,8 +229,7 @@ class B A ITestB ITestA
 ```
 
 ## 实例化
-类型名后加()便可以实例化对象，括号内填构造函数的参数，数组则类型名加方括号即可，方括号内填数组长度，
-也可以用花括号来初始化并赋值数组
+类型名后加()便可以实例化对象，括号内填构造函数的参数，数组则类型名加方括号即可，方括号内填数组长度，也可以用花括号来初始化并赋值数组，向量的构造函数支持结构操作
 ```rs
 class A
     public A()
@@ -215,6 +242,10 @@ Entry()
     var c = A[10][]                 //长度为10的A数组的数组
     var d = int{1, 2, 3}            //长度为3，内容为1,2,3的整数数组
     int[] e = {3, 2, 1}             //长度为3，内容为3,2,1的整数数组
+    var v4_a = real4(1, 2, 3, 4)
+    var v4_b = real4(v4_a.xyz, 4)
+    var v4_c = real4(1, v4_b.zx, 4)
+    var v4_d = real4(v4_a.xy, v4_b.zx)
 ```
 
 ## 类型转换
@@ -229,12 +260,25 @@ Entry()
     B b = B& a
     bool c = a is B bb              //变量名bb非必须
     B d = a as B                    //变量d不为null
-    a=A()
+    a = A()
     B e = a as B                    //变量e为null 
 ```
 
+
+## 字符串运算的默认转换
+bool,real和int与字符串相加时会自动调用他们的ToString()，handle与字符串相加时会先调用GetHandleID再调用ToString()，entity则会调用GetEntityID()
+```rs
+class A
+Entry()
+    var a = A()
+    var b = true
+    var c = "A.HID = " + a + ", b = " + b  //c的结果是：A.HID = 1, b = true
+```
+
+
 ## 函数的override
-所有成员函数都是虚函数，如果子类中成员函数名和参数类型与父类一致时就会override，如果override函数返回值类型不一致会编译异常
+所有成员函数都是虚函数，如果子类中成员函数名和参数类型与父类一致时就会override，如果override函数返回值类型不一致会编译异常</br>
+使用‘.’调用成员函数时执行虚调用操作，当函数被子类override时会调用子类的函数，使用‘->’调用则会执行实调用操作，不会被子类的override函数影响
 ```rs
 interface ITest
     IFunc()
@@ -246,11 +290,18 @@ class A
 class B A ITest
     public MFunc()
         Print("MFunc in B")
+class C B
+    public MFunc()
+        Print("MFunc in C")
 
 Entry()
-    ITest i = B()
+    ITest i = C()
     i.IFunc()                       //输出 "IFunc"
-    (B& i).Mfunc()                  //输出 "MFunc in B"
+    var b = B& i
+    b.MFunc()                       //输出 "MFunc in C"
+    b->Mfunc()                      //输出 "MFunc in B"
+    A a = b
+    a->Mfunc()                      //输出 "MFunc in A"
 ```
 
 ## 运算符
@@ -275,6 +326,37 @@ Entry()
     Func f = null
     f?()                            //不会报空引用错
 ```
+
+## 异常处理
+支持try、catch和finally语句来处理运行过程中的异常，
+当try语句块中发生异常或使用exit语句退出时，
+catch语句可以捕获抛出的异常并执行catch语句中的代码，
+catch语句后无表达式则会捕获任意异常，
+如果有可赋值表达式也会捕获任意异常并将异常代码赋值给表达式，
+如果有不可赋值表示，则只会捕获异常代码与表达式计算结果相等的异常。
+finally语句块中的代码无论try块中是否抛出异常都会执行。
+
+```js
+Entry()
+    try
+        var a = 0
+        var b = 0
+        var c = a / b
+    catch 0x7000000000000003
+        Print("捕获除0报错")
+    finally
+        Print("必然会执行的代码")
+//虚拟机已使用的异常代码
+//0x7000_0000_0000_0000     未分类的异常
+//0x7000_0000_0000_0001     空指针
+//0x7000_0000_0000_0002     越界
+//0x7000_0000_0000_0003     除零
+//0x7000_0000_0000_0004     类型强转失败
+//0x7000_0000_0000_0005     操作无效的携程
+//0x7000_0000_0000_0006     携程执行完成之前获取携程执行结果
+//0x7000_0000_0000_0007     调用native函数发生异常
+```
+
 
 # kernel命名空间下的接口
 
@@ -324,7 +406,7 @@ real3 Lerp(real3, real3, real)
 real4 Lerp(real4, real4, real)
 
 //触发垃圾回收，返回值为回收后托管堆大小
-int Collect()
+int Collect(bool full)
 
 //统计当前协程数量
 int CountCoroutine()
@@ -334,6 +416,9 @@ int CountEntity()
 
 //统计当前托管对象数量
 int CountHandle()
+
+//统计当前字符串数量
+int CountString()
 
 //获取当前托管堆大小
 int HeapTotalMemory()
@@ -397,18 +482,23 @@ class real2
     real2 Normalized()
     real Magnitude()
     real SqrMagnitude()
-
+    
 class real3
     real3 Normalized()
+    real Magnitude()
+    real SqrMagnitude()
+
+class real4
+    real4 Normalized()
     real Magnitude()
     real SqrMagnitude()
 
 class string
     int GetLength()
     int GetStringID()
-    bool ToBool()
-    int ToInteger()
-    real ToReal()
+    bool ToBool()           //解析失败返回false
+    int ToInteger()         //解析失败返回0
+    real ToReal()           //解析失败返回0
 
 class handle
     int GetHandleID()

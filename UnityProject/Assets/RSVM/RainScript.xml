@@ -738,10 +738,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:RainScript.VirtualMachine.Kernel.Collect">
+        <member name="M:RainScript.VirtualMachine.Kernel.Collect(System.Boolean)">
             <summary>
             托管堆回收
             </summary>
+            <param name="full">完全GC</param>
         </member>
         <member name="M:RainScript.VirtualMachine.Kernel.Finalize">
             <summary>

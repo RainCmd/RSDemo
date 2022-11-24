@@ -4,9 +4,7 @@ Bullet(real2 pos, real2 dir, int dmg, real time, int pid)
         time -= DELTA_TIME
         var pos = bullet.GetPos() + dir * DELTA_TIME
         bullet.SetPos(pos)
-        kernel.Collect()
         Unit u = FindUnit(value => value.pid != pid && CheckCollision(pos, value))
-        kernel.Collect()
         if u != null
             u.Hit(dmg)
             break
