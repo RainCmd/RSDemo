@@ -31,7 +31,7 @@ namespace NameSpace
             this.face = face;
         }
     }
-    public class Entity : IEntity
+    public class Entity
     {
         public bool dirty;
         public bool deleted;
@@ -78,7 +78,7 @@ namespace NameSpace
             setCamPos(new Vector3((float)pos.x, (float)pos.y, -10));
         }
 
-        public IEntity Item_Create(string model, string anim, bool face, Real2 position)
+        public object Item_Create(string model, string anim, bool face, Real2 position)
         {
             var entity = pool.Count > 0 ? pool.Pop() : new Entity();
             entity.dirty = true;
@@ -91,7 +91,7 @@ namespace NameSpace
             entities.Add(entity);
             return entity;
         }
-        public void Item_SetAnim(IEntity entity, string anim)
+        public void Item_SetAnim(object entity, string anim)
         {
             if (entity is Entity e)
             {
@@ -99,7 +99,7 @@ namespace NameSpace
                 e.anim = anim;
             }
         }
-        public void Item_SetFace(IEntity entity, bool face)
+        public void Item_SetFace(object entity, bool face)
         {
             if (entity is Entity e)
             {
@@ -107,7 +107,7 @@ namespace NameSpace
                 e.dirty = true;
             }
         }
-        public void Item_SetPos(IEntity entity, Real2 pos)
+        public void Item_SetPos(object entity, Real2 pos)
         {
             if (entity is Entity e)
             {
@@ -115,7 +115,7 @@ namespace NameSpace
                 e.dirty = true;
             }
         }
-        public void Item_Delete(IEntity entity, string anim)
+        public void Item_Delete(object entity, string anim)
         {
             if (entity is Entity e)
             {
@@ -172,7 +172,7 @@ namespace NameSpace
             symbolTable = Load<SymbolTable>("symbol");
             debugTable = Load<DebugTable>("debug");
             //这边回调函数实际上应该通过回调的程序集名加载对应的文件，但这里只有一个程序集，所以简单处理了
-            kernel = new Kernel(Load<Library>("library"), null, _ => performer);
+            kernel = new Kernel(new KernelParameter(null, _ => performer), Load<Library>("library"));
             debugger = new RainScript.DebugAdapter.Debugger("RSDemo", kernel, _ => debugTable, _ => symbolTable);
             operFH = kernel.GetFunctionHandle("OnPlayerOperator");
             kernel.OnExit += OnCoroExit;

@@ -1,14 +1,14 @@
 
 SpawnGift()
     while
-        Gift((kernel.GetRandomInt() & 1) > 0 ? 'B' : 'S', real2(GetRandomInt(128), 1))
+        Gift((kernel.GetRandomInt() & 1) > 0 ? 'B' : 'S'; real2(GetRandomInt(128), 1))
         Wait(1 + kernel.GetRandomReal() * 2)
         wait
 
 class Gift Item
     int type
     real speed = 30
-    public Gift(int type, real2 pos) base("BulletData", type == 'B' ? "B_Bullet" : "S_Bullet", pos, true)
+    public Gift(int type, real2 pos) base("BulletData"; type == 'B' ? "B_Bullet" : "S_Bullet"; pos, true)
         this.type = type
         start Check()
 

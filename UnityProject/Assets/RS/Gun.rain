@@ -21,13 +21,13 @@ class Shotgun IGun
         this.pid = pid
 
     Shoot(real2 pos, real2 dir, real angle)
-        var sin, var cos = kernel.SinCos(angle * kernel.Deg2Rad)
+        real sin, real cos = kernel.SinCos(angle * kernel.Deg2Rad)
         dir = real2(cos * dir.x - sin * dir.y, sin * dir.x + cos * dir.y).Normalized() * 10
         start Bullet(pos, dir, 10, 2, pid)
 
     public Shoot(real2 pos, real2 dir)
         Shoot(pos, dir, 0)
-        for var i = 1, i <= level, i ++
+        for var i = 1; i <= level; i ++
             Shoot(pos, dir, 10 * i)
             Shoot(pos, dir, - 10 * i)
         Wait(.15)
@@ -55,6 +55,6 @@ class Burstgun IGun
             wait
         else
             var pos = bullet.GetPos()
-            for var i = 0, i < 12, i ++
+            for var i = 0; i < 12; i ++
                 start Bullet(pos, real2(kernel.SinCos(kernel.PI * i / 6)) * 3, 10, 1, pid)
         bullet.Kill("normal_death")

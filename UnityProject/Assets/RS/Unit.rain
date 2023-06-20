@@ -10,7 +10,7 @@ bool CheckCollision(real2 pos, Unit unit)
     return false
 
 Unit FindUnit(UnitPredicate match)
-    for var i = 0, i < unitCount, i ++
+    for var i = 0; i < unitCount; i ++
         if match(units[i])
             return units[i]
     return null
@@ -29,7 +29,7 @@ class Unit Item
         this.hp = hp
         if unitCount == units.GetLength()
             var nus = Unit[unitCount << 1]
-            for var i = 0, i < unitCount, i ++
+            for var i = 0; i < unitCount; i ++
                 nus[i] = units[i]
             units = nus
         uid = unitCount ++
@@ -63,4 +63,4 @@ class Unit Item
             if pos.y < 0
                 Kill()
             wait
-
+            

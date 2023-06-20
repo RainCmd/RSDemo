@@ -21,7 +21,7 @@ public InitGame(int lpid, int count, int seed)
     localPID = lpid
     playerCount = count
     playerOperators = PlayerOperator[count]
-    for var i = 0, i < count, playerOperators[i ++] = PlayerOperator()
+    for var i = 0; i < count; playerOperators[i ++] = PlayerOperator()
     kernel.SetRandomSeed(seed)
     start SpawnEnemy()
     start SpawnGift()

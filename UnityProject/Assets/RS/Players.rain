@@ -5,7 +5,7 @@ Player[] players
 
 CreatePlayer()
     players = Player[playerCount]
-    for var i = 0, i < playerCount, players[i]= Player(i), i ++
+    for var i = 0; i < playerCount; players[i]= Player(i); i ++
 
 class Player
     public IGun gun

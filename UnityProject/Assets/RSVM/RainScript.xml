@@ -4,6 +4,498 @@
         <name>RainScript</name>
     </assembly>
     <members>
+        <member name="T:RainScript.Compiler.CompileState">
+            <summary>
+            编译状态
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompileState.Unstart">
+            <summary>
+            未开始
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompileState.Compiling">
+            <summary>
+            正在编译
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompileState.Failed">
+            <summary>
+            已失败
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompileState.Completed">
+            <summary>
+            已完成
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompileState.Accident">
+            <summary>
+            编译器内部发生异常
+            </summary>
+        </member>
+        <member name="T:RainScript.Compiler.IFileInfo">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.IFileInfo.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.IFileInfo.Context">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="T:RainScript.Compiler.CompilerCommand">
+            <summary>
+            编译命令选项
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilerCommand.generatorSymbolTable">
+            <summary>
+            生成符号表
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilerCommand.generatorDebugTable">
+            <summary>
+            生成调试表
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilerCommand.ignoreExit">
+            <summary>
+            忽略Exit功能
+            </summary>
+        </member>
+        <member name="M:RainScript.Compiler.CompilerCommand.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            编译命令选项
+            </summary>
+            <param name="generatorSymbolTable"></param>
+            <param name="generatorDebugTable"></param>
+            <param name="ignoreExit"></param>
+        </member>
+        <member name="T:RainScript.Compiler.Builder">
+            <summary>
+            编译器
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.Builder.State">
+            <summary>
+            当前编译状态
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.Builder.name">
+            <summary>
+            库名
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.Builder.exceptions">
+            <summary>
+            编译异常
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.Builder.Library">
+            <summary>
+            编译完成后的库
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.Builder.ReferenceLibrary">
+            <summary>
+            给其他库引用的信息
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.Builder.SymbolTable">
+            <summary>
+            符号表
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.Builder.DebugTable">
+            <summary>
+            调试表
+            </summary>
+        </member>
+        <member name="M:RainScript.Compiler.Builder.#ctor(System.String,System.Collections.Generic.IEnumerable{RainScript.Compiler.IFileInfo},System.Collections.Generic.IEnumerable{RainScript.Compiler.ReferenceLibrary})">
+            <summary>
+            编译器
+            </summary>
+            <param name="name">目标库名</param>
+            <param name="files">文件集</param>
+            <param name="references">引用集</param>
+        </member>
+        <member name="M:RainScript.Compiler.Builder.Compile(RainScript.Compiler.CompilerCommand)">
+            <summary>
+            开始编译
+            </summary>
+            <param name="command">编译参数</param>
+        </member>
+        <member name="M:RainScript.Compiler.ScopeList`1.FastRemoveAt(System.Int32)">
+            <summary>
+            会改变元素顺序
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="T:RainScript.Compiler.CompilingExceptionCode">
+            <summary>
+            编译错误代码
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.LEXICAL_UNKNOWN">
+            <summary>
+            未知的词法解析错误
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.LEXICAL_MISSING_PAIRED_SYMBOL">
+            <summary>
+            缺少配对的符号
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.LEXICAL_UNKNOWN_SYMBOL">
+            <summary>
+            未知的符号
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_UNKNOW">
+            <summary>
+            未知的语法错误
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_UNEXPECTED_LEXCAL">
+            <summary>
+            意外的词条
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_INDENT">
+            <summary>
+            对齐问题
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_MISSING_NAME">
+            <summary>
+            名称缺失
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_NAME_IS_KEY_WORLD">
+            <summary>
+            名称是个关键字
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_INVALID_VISIBILITY">
+            <summary>
+            无效的可见性标记
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_CONSTANT_NOT_ASSIGNMENT">
+            <summary>
+            常量未赋值
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_UNEXPECTED_LINE_END">
+            <summary>
+            意外的行尾
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_CONSTRUCTOR_NO_RETURN_VALUE">
+            <summary>
+            构造函数没有返回值
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_DEFINITION_NOT_PUBLIC">
+            <summary>
+            定义不是公开的
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_MISSING_PAIRED_SYMBOL">
+            <summary>
+            缺少配对的符号
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_DESTRUCTOR_ALLOC">
+            <summary>
+            析构函数中申请托管内存
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.SYNTAX_IGNORE_EXIT_NONSUPPORT_TRY">
+            <summary>
+            IgnoreExit命令编译的代码中不支持try语句
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_UNKNONW">
+            <summary>
+            未知的编译错误
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_DUPLICATE_LIBRARY_NAMES">
+            <summary>
+            库名重复
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_DUPLICATE_DECLARATION_NAMES">
+            <summary>
+            重复的声明
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_LIBRARY_NOT_FOUND">
+            <summary>
+            库未找到
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_CIRCULAR_RELY">
+            <summary>
+            循环依赖
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_CIRCULAR_INHERIT">
+            <summary>
+            循环继承
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_INTERFACE_NOT_IMPLEMENTS">
+            <summary>
+            接口未实现
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_DECLARATION_NOT_FOUND">
+            <summary>
+            声明未找到
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_NAMESPACE_NOT_FOUND">
+            <summary>
+            命名空间未找到
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_DECLARATION_NOT_VISIBLE">
+            <summary>
+            声明不可见
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_EQUIVOCAL">
+            <summary>
+            意义不明确
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_INVALID_INHERIT">
+            <summary>
+            无效的继承
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_INVALID_DEFINITION">
+            <summary>
+            无效的类型定义
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_FUNCTION_DUPLICATE_DEFINITION">
+            <summary>
+            函数重复定义（函数名和参数类型列表相同）
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_TUPLE_TYPE_EQUIVOCAL">
+            <summary>
+            元组类型不明确
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.COMPILING_NOT_MEMBER_FUNCTION">
+            <summary>
+            不是已实现的成员函数
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_UNKNONW">
+            <summary>
+            未知的逻辑生成错误
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_TYPE_MISMATCH">
+            <summary>
+            类型不匹配
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_REQUIRED_PARAMETER_MISSING">
+            <summary>
+            缺少必要参数
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_INVALID_OPERATION">
+            <summary>
+            无效的操作
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_MISSING_RETURN">
+            <summary>
+            缺少返回值
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_MISSING_EXPRESSION">
+            <summary>
+            缺少表达式
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_FUNCTION_NOT_FOUND">
+            <summary>
+            函数未找到
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_TUPLE_INDEX_NOT_CONSTANT">
+            <summary>
+            元组索引不是常量
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_TUPLE_INDEX_OUT_OF_RANGE">
+            <summary>
+            元组索引越界
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_NOT_MEMBER_METHOD">
+            <summary>
+            不是成员方法
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_NOT_HANDLE_MEMBER_METHOD">
+            <summary>
+            不是句柄类型的成员方法
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_NOT_TYPE">
+            <summary>
+            不是个类型
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_CONSTANT_EVALUATION_FAIL">
+            <summary>
+            常量值计算失败
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_NATIVE_COROUTINE">
+            <summary>
+            内部函数不能用携程调用
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingExceptionCode.GENERATOR_DIVIDE_BY_ZERO">
+            <summary>
+            除零
+            </summary>
+        </member>
+        <member name="T:RainScript.Compiler.CompilingException">
+            <summary>
+            编译异常
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingException.path">
+            <summary>
+            异常所在文件路径
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingException.line">
+            <summary>
+            异常所在行
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingException.start">
+            <summary>
+            异常发生片段
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingException.end">
+            <summary>
+            异常发生片段
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingException.code">
+            <summary>
+            异常代码
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.CompilingException.message">
+            <summary>
+            额外信息
+            </summary>
+        </member>
+        <member name="T:RainScript.Compiler.ExceptionCollector">
+            <summary>
+            异常收集器
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.ExceptionCollector.Count">
+            <summary>
+            异常数量
+            </summary>
+        </member>
+        <member name="P:RainScript.Compiler.ExceptionCollector.Item(System.Int32)">
+            <summary>
+            异常
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Compiler.ExceptionCollector.GetEnumerator">
+            <summary>
+            遍历异常
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RainScript.Compiler.ISpace.TryFindSpace(RainScript.StringSegment,RainScript.Compiler.ISpace@)">
+            <summary>
+            从当前空间开始向上查找所有父空间的子空间
+            </summary>
+        </member>
+        <member name="M:RainScript.Compiler.ISpace.TryFindChild(RainScript.StringSegment,RainScript.Compiler.ISpace@)">
+            <summary>
+            查找当前空间的直接子空间
+            </summary>
+        </member>
+        <member name="M:RainScript.Compiler.ISpace.TryFindDeclaration(RainScript.StringSegment,RainScript.Compiler.Declaration@)">
+            <summary>
+            只在当前空间中的定义里查找
+            </summary>
+        </member>
+        <member name="M:RainScript.Compiler.ISpace.Contain(RainScript.Compiler.ISpace)">
+            <summary>
+            目标空间是当前空间的子集
+            </summary>
+        </member>
+        <member name="T:RainScript.Compiler.ListSegment`1">
+            <summary>
+            [,]
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:RainScript.Compiler.ListSegment`1.Count">
+            <summary>
+            元素数量至少为1
+            </summary>
+        </member>
+        <member name="T:RainScript.Compiler.ReferenceSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.ReferenceSpace.name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:RainScript.Compiler.ReferenceLibrary">
+            <summary>
+            库
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.TextSegment.start">
+            <summary>
+            行索引[,]
+            </summary>
+        </member>
+        <member name="F:RainScript.Compiler.TextSegment.end">
+            <summary>
+            行索引[,]
+            </summary>
+        </member>
+        <member name="M:RainScript.Compiler.TextSegment.#ctor(RainScript.Compiler.TextInfo,System.Int32,System.Int32)">
+            <summary>
+            [,]
+            </summary>
+        </member>
         <member name="T:RainScript.DebugTable">
             <summary>
             调试表
@@ -349,21 +841,6 @@
             </summary>
             <param name="d"></param>
         </member>
-        <member name="T:RainScript.VirtualMachine.IEntity">
-            <summary>
-            实体对象接口
-            </summary>
-        </member>
-        <member name="M:RainScript.VirtualMachine.IEntity.OnReference">
-            <summary>
-            当实体对象被添加到虚拟机时调用
-            </summary>
-        </member>
-        <member name="M:RainScript.VirtualMachine.IEntity.OnRelease">
-            <summary>
-            当实体对象在虚拟机中引用数量归零时调用
-            </summary>
-        </member>
         <member name="T:RainScript.VirtualMachine.ExitCode">
             <summary>
             退出原因
@@ -511,7 +988,7 @@
         </member>
         <member name="M:RainScript.VirtualMachine.InvokerHandle.Dispose">
             <summary>
-            释放调用句柄
+            释放调用的持有，调用执行完成后会自动回收
             </summary>
         </member>
         <member name="M:RainScript.VirtualMachine.InvokerHandle.GetBoolReturnValue(System.Int32)">
@@ -577,6 +1054,13 @@
             <param name="index">参数索引</param>
             <param name="value">参数值</param>
         </member>
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,System.Byte)">
+            <summary>
+            设置字节参数
+            </summary>
+            <param name="index">参数索引</param>
+            <param name="value">参数值</param>
+        </member>
         <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,System.Int64)">
             <summary>
             设置整数参数
@@ -619,7 +1103,7 @@
             <param name="index">参数索引</param>
             <param name="value">参数值</param>
         </member>
-        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,RainScript.VirtualMachine.IEntity)">
+        <member name="M:RainScript.VirtualMachine.InvokerHandle.SetParameter(System.Int32,System.Object)">
             <summary>
             设置实体参数
             </summary>
@@ -631,6 +1115,76 @@
             判断句柄是否有效
             </summary>
             <param name="handle"></param>
+        </member>
+        <member name="T:RainScript.VirtualMachine.KernelParameter">
+            <summary>
+            虚拟机启动参数
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.libraryLoader">
+            <summary>
+            程序集加载器
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.performerLoader">
+            <summary>
+            程序集交互对象加载器
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.heapCapacity">
+            <summary>
+            托管堆初始大小
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.handleHeadCapacity">
+            <summary>
+            托管堆句柄头容器初始大小
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.generation">
+            <summary>
+            快速GC最大代数
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.stringCapacity">
+            <summary>
+            字符串容器初始大小
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.coroutineCapacity">
+            <summary>
+            携程容器初始大小
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.entityCapacity">
+            <summary>
+            实体容器初始大小
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.entityReference">
+            <summary>
+            当实体对象被添加到虚拟机时调用
+            </summary>
+        </member>
+        <member name="F:RainScript.VirtualMachine.KernelParameter.entityRelease">
+            <summary>
+            当实体对象在虚拟机中引用数量归零时调用
+            </summary>
+        </member>
+        <member name="M:RainScript.VirtualMachine.KernelParameter.#ctor(System.Func{System.String,RainScript.Library},System.Func{System.String,RainScript.IPerformer},System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.Action{System.Object},System.Action{System.Object})">
+            <summary>
+            虚拟机启动参数
+            </summary>
+            <param name="libraryLoader">程序集加载器</param>
+            <param name="performerLoader">交互对象加载器</param>
+            <param name="heapCapacity">托管堆初始大小</param>
+            <param name="handleHeadCapacity">托管堆句柄头容器初始大小</param>
+            <param name="generation">快速GC最大代数</param>
+            <param name="stringCapacity">字符串初始容器大小</param>
+            <param name="coroutineCapacity">携程容器初始大小</param>
+            <param name="entityCapacity">实体容器初始大小</param>
+            <param name="entityReference">当实体对象被添加到虚拟机时调用</param>
+            <param name="entityRelease">当实体对象在虚拟机中引用数量归零时调用</param>
         </member>
         <member name="T:RainScript.VirtualMachine.KernelState">
             <summary>
@@ -689,14 +1243,18 @@
             触发断点
             </summary>
         </member>
-        <member name="M:RainScript.VirtualMachine.Kernel.#ctor(RainScript.Library,System.Func{System.String,RainScript.Library},System.Func{System.String,RainScript.IPerformer},System.Int32)">
+        <member name="M:RainScript.VirtualMachine.Kernel.#ctor(RainScript.Library[])">
             <summary>
             核心
             </summary>
-            <param name="library">启动程序集</param>
-            <param name="libraryLoader">程序集加载器</param>
-            <param name="performerLoader">程序集交互对象加载器</param>
-            <param name="entityCapacity">实体容器初始大小</param>
+            <param name="libraries">启动程序集</param>
+        </member>
+        <member name="M:RainScript.VirtualMachine.Kernel.#ctor(RainScript.VirtualMachine.KernelParameter,RainScript.Library[])">
+            <summary>
+            核心
+            </summary>
+            <param name="libraries">启动程序集</param>
+            <param name="parameter">启动参数</param>
         </member>
         <member name="M:RainScript.VirtualMachine.Kernel.GetFunctionHandle(System.String,System.String)">
             <summary>
